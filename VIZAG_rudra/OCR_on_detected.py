@@ -48,7 +48,7 @@ def process_image_in_grids(image, client, grid_size):
     draw_grid_lines(image, grid_size)
     return image, all_texts
 
-def process_directory(count, image, client):
+def process_directory(image, client):
     findings_dir = "Findings"
     create_directory(findings_dir)
     
@@ -57,14 +57,14 @@ def process_directory(count, image, client):
         detected_text_str = '_'.join(detected_texts).replace(' ', '_')
         output_path = os.path.join(findings_dir, f'{detected_text_str}.jpg')
     else:
-        output_path = os.path.join(findings_dir, f'no_numbers_detected_{count}.jpg')
-    cv.imwrite(output_path, processed_image)
-
-def start_OCR(count, img):
+        output_path = os.path.join(findings_dir, f'no_numbers_detected_1.jpg')
+    # cv.imwrite(output_path, processed_image)
+    return detected_texts
+def start_OCR(img):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "collablens-bucket_key.json"  # Update the path
     client = vision.ImageAnnotatorClient()
-    process_directory(count, img, client) 
-
+    detected_text = process_directory(img, client) 
+    return detected_text
 if __name__ == '__main__':
     # Example usage
     img = cv.imread("path_to_your_image.jpg")  # Update with your image path
