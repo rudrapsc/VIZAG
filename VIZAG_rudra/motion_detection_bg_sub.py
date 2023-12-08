@@ -2,18 +2,22 @@ import cv2
 import os
 import threading
 from OCR_on_detected import start_OCR
+import concurrent.futures
+def save_cropped_images(frame, contours, output_dir, count=0):
+    futures = []
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for contour in contours:
+            x, y, w, h = cv2.boundingRect(contour)
+            if cv2.contourArea(contour) < 900:
+                continue
+            cropped_image = frame[y:y+h, x:x+w]
+            future = executor.submit(start_OCR, cropped_image)
+            futures.append(future)
+            # count += 1
 
-def save_cropped_images(frame, contours, output_dir, count):
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-        if cv2.contourArea(contour) < 900:  # Adjust this threshold as needed
-            continue
-        cropped_image = frame[y:y+h, x:x+w]
-        thread = threading.Thread(target=start_OCR, args=(count, cropped_image))
-        thread.start()
-        count += 1
-    return count
-
+    # Collect the results
+    results = [future.result() for future in futures]
+    print("number is::",results)
 cap = cv2.VideoCapture(0)  # Change this to your video path
 
 cropped_img_dir = "cropped_images"
