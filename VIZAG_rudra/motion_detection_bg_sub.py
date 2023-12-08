@@ -3,7 +3,7 @@ import os
 import threading
 from OCR_on_detected import start_OCR
 import concurrent.futures
-def save_cropped_images(frame, contours, output_dir, count=0):
+def ocr2(frame, contours, output_dir, count=0):
     futures = []
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for contour in contours:
@@ -35,7 +35,7 @@ while cap.isOpened():
     dilated = cv2.dilate(thresh, None, iterations=3)
     contours, _ = cv2.findContours(dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    count = save_cropped_images(frame1, contours, cropped_img_dir, count)
+    count = ocr2(frame1, contours, cropped_img_dir, count)
 
     frame1 = frame2
     ret, frame2 = cap.read()

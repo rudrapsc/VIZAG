@@ -7,13 +7,15 @@ reader = easyocr.Reader(['en'], gpu=True)
 
 
 def ocr(moment_frame_gray_thresh):
-    detections = reader.readtext(moment_frame_gray_thresh)
-    cam = 1
-    for detection in detections:
-        bbox, text, score = detection
-        if score > 0.5:
-            print (bbox, text, score)
-            update_sheet(text,cam)
+    ladle_number = start_OCR(moment_frame_gray_thresh)
+    print(ladle_number)
+    # detections = reader.readtext(moment_frame_gray_thresh)
+    # cam = 1
+    # for detection in detections:
+    #     bbox, text, score = detection
+    #     if score > 0.5:
+    #         print (bbox, text, score)
+    #         update_sheet(text,cam)
 
     # count = 1
     # start_OCR(count,moment_frame_gray_thresh)

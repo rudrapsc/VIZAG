@@ -6,6 +6,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from datetime import datetime,date
+import numpy as np
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = '1AQ6TgA_hm2bocR8eEwC9WLBDc7vScjg2ZhKAwAvIIBQ'
 SAMPLE_RANGE_NAME = 'Sheet1'
@@ -46,10 +47,51 @@ else:
     }
     service.spreadsheets().batchUpdate(spreadsheetId= SPREADSHEET_ID , body=request_body).execute()
 # 
-def update_sheet(text,cam):
+def update_sheet(numeric_parts,cam,time):
+    room_cam = {
+        69:"A",
+        13:"B"
+    }
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,range=f'{today}!A:F').execute()
     value = result.get('values',[])
+    value = np.array(value)
     print(value)
-    value_exist_1 = any(text in row for row in value)
-    pass
+    r,c = value.shape
+    # room = str(cam)
+    laddle_number = numeric_parts
+    print("hello")
+    print("laddle number is",laddle_number)
+    print("time is",time)
+    initial_room = room_cam[numeric_parts]
+    initial_time = time
+    entry = time
+    exit =time
+    # if value[r-1,3]==room :
+    
+    print("room is",room_cam[laddle_number])
+    print("type of value is",type(value[r-1,3]))
+    print("type of room cam np str is",type(np.str_(room_cam[laddle_number])))
+    if ((value[r-1,3]==np.str_(room_cam[laddle_number])) and (value[r-1,0]==np.str_(laddle_number))):
+        
+        
+        print("yes")
+        
+        new_value = [[exit]]
+        request_body = { 
+            'values':new_value
+        }
+        sheet1 = service.spreadsheets()
+        sheet1.values().update(spreadsheetId=SPREADSHEET_ID,range=f'{today}!F{r}',valueInputOption='USER_ENTERED',body= request_body).execute()
+        print(new_value)
+    else:
+        print("no")
+        print("no2")
+        new_value = [[laddle_number,initial_room,initial_time,room_cam[laddle_number],entry,exit]]
+        print("before appending",new_value)
+        request_body = { 
+            'values':new_value
+        }
+        sheet1 = service.spreadsheets()
+        sheet1.values().append(spreadsheetId=SPREADSHEET_ID,range=f'{today}!A:A',valueInputOption='USER_ENTERED',body= request_body).execute()
+        print(new_value)        
