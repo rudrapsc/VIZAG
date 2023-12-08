@@ -2,14 +2,19 @@ import cv2
 import numpy as np
 import easyocr
 from OCR_on_detected import start_OCR
+from google_sheet_update import update_sheet
 reader = easyocr.Reader(['en'], gpu=True)
+
 
 def ocr(moment_frame_gray_thresh):
     detections = reader.readtext(moment_frame_gray_thresh)
+    cam = 1
     for detection in detections:
         bbox, text, score = detection
-        if score > 0.1:
+        if score > 0.5:
             print (bbox, text, score)
+            update_sheet(text,cam)
+
     # count = 1
     # start_OCR(count,moment_frame_gray_thresh)
     # pass   
