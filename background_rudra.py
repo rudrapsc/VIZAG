@@ -29,7 +29,7 @@ def ocr2(frame, contours, output_dir, count=0):
         print(numeric_parts)
         print("type of numeric part is",type(numeric_parts))
         time=datetime.now().strftime('%H:%M:%S')
-        if numeric_parts == 69 or numeric_parts ==13:
+        if numeric_parts == 69 or numeric_parts ==13 or numeric_parts == 23 or numeric_parts == 71:
            
             update_sheet(numeric_parts,cam,time)
         

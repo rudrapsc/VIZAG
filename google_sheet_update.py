@@ -50,7 +50,9 @@ else:
 def update_sheet(numeric_parts,cam,time):
     room_cam = {
         69:"A",
-        13:"B"
+        13:"B",
+        71:"C",
+        23:"D"
     }
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SPREADSHEET_ID,range=f'{today}!A:F').execute()
