@@ -1,0 +1,1 @@
+ladle_camera.jpg webcam_frame.jpg
