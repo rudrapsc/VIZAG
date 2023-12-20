@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* Navigation */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+#Log{
+ padding-top: 11px;
+ padding-left: 3px;
+ 
+}
+/* -------------------- title ---------------- */
+.title{
+    font-weight: bold;
+    font-size: large;
+    margin-top: 6px;
+    margin-left: 6px;
+    
+}
+
+.navigation ul li a .title {           
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* curve outside */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* Main */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.filter {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 3px;
+            color: #333;
+        }
+
+        input[type="date"] {
+            width: 200px;
+            padding: 10px;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #555;
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #009688;
+            box-shadow: 0 0 5px rgba(0, 150, 136, 0.7);
+        }
+ 
+
+
+
+
+/* ================== Ladle Details List ============== */
+
+.details .recentOrders {
+  margin-top: 20px;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 1px;
+  width: 600px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 1px;
+}
+.details {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+ 
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px;
+  margin-left: 200px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+  padding: 10px;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-top: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tr td a {
+  text-decoration: none;
+}
+.details .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.details .recentOrders table tr th,
+.details .recentOrders table tr td
+{
+  padding:1px;
+  text-align: center;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: center;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: center;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.recentCustomers {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers table tr td {
+  padding: 12px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+.recentCustomers table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span {
+  color: var(--white);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+.back-button {
+  padding: 8px 15px;
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+/* Position the button in the top right corner */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+    </style>
+</head>
+
+<body>
+    <!--Navigation-->  
+    <div class="container">
+        <div class="navigation">
+            <ul>
+              <li>
+                <a href="/">
+                    <span class="icon">
+                      <ion-icon name="apps-outline"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+              <a href="/homepage">
+                  <span class="icon">
+                    <ion-icon name="home-outline"></ion-icon>
+                  </span>
+                  <span class="title">Home Page</span>
+              </a>
+          </li>
+          <li>
+            <a href="/all">
+                <span class="icon">
+                  
+                  <ion-icon name="hourglass"></ion-icon>
+                </span>
+                <span class="title">Recent Status</span>
+            </a>
+        </li>
+        
+        {% comment %} <li>
+          <a href="/find">
+              <span class="icon">
+                <ion-icon name="location-outline"></ion-icon>
+              </span>
+              <span class="title">Map</span>
+          </a>
+      </li> {% endcomment %}
+      <li>
+        <a href="/life">
+            <span class="icon">
+              <ion-icon name="location-outline"></ion-icon>
+            </span>
+            <span class="title">Alerts</span>
+        </a>
+    </li>
+            <li>
+                <a href="/camera">
+                    <span class="icon">
+                        <ion-icon name="videocam"></ion-icon>
+                    </span>
+                    <span class="title">Livefeed</span>
+                </a>
+            </li>
+            <li>
+              <a href="/">
+                  <span class="icon">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                  </span>
+                  <span class="title">Logout</span>
+              </a>
+          </li>
+              </ul>   
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <button class="back-button">Back</button> <!-- Back button added here -->
+            </div>
+
+
+            <!-- ================ LADLE STATUS ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Ladle Current Status</S></h2>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>LADLE NO.</td>
+                                <td>ENTRY TIME</td>
+                                <td>ENTRY DATE</td>
+                                <td>LOCATION</td>
+                                <td>EXIT TIME</td>
+                                <td>EXIT DATE</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                          {%for x in data%}
+                          <tr>
+                            <td>{{x.0}}</td>
+                            <td>{{x.1}}</td>
+                            <td>{{da}}</td>
+                            <td>{{x.2}}</td>
+                            <td>{{x.3}}</td>
+                            <td>{{da}}</td>
+                        </tr>
+                          {%endfor%}
+                     </tbody>
+                    </table>
+                    
+                </div>
+                <div>
+                    <canvas id="chart" style="height: 300px; width: 100px;"></canvas>
+                  </div>              
+            </div>
+        </div>
+    </div>
+    
+    <script>
+      //  back button
+    document.querySelector(".back-button").onclick = function() {
+      window.history.back();
+    };
+// Menu Toggle
+let toggle = document.querySelector(".toggle");
+let navigation = document.querySelector(".navigation");
+let main = document.querySelector(".main");
+
+toggle.onclick = function () {
+  navigation.classList.toggle("active");
+  main.classList.toggle("active");
+};
+{% comment %} sessions {% endcomment %}
+const TIMEOUT_PERIOD = 1 * 60 * 1000; // 30 minutes
+let sessionTimeoutId;
+
+function startSessionTimeout() {
+    clearTimeout(sessionTimeoutId);
+    sessionTimeoutId = setTimeout(() => {
+      alert("Session Time Expired!");
+        window.location.href = '/logout'; // Django URL for logout
+    }, TIMEOUT_PERIOD);
+}
+
+function resetSessionTimeout() {
+    startSessionTimeout();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    startSessionTimeout();
+    document.addEventListener('mousemove', resetSessionTimeout);
+    document.addEventListener('keypress', resetSessionTimeout);
+});
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

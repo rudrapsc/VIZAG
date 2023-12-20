@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Stream</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff; 
+            position: relative; /* Added position relative to position the button */
+        }
+
+        /* New CSS for the "SEND MAILS" button */
+        .send-mail-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #2a2185;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .send-mail-btn:hover {
+            background-color: #1a1461; /* Darker color on hover */
+        }
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin-top: 20px;
+            margin-right: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2a2185;
+            color: white;
+            font-size: 20px;
+            letter-spacing: 1px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5; /* Change the color on hover */
+        }
+
+        tr:hover a {
+            color: #2a2185; /* Change the link color on hover */
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            transition: opacity 0.5s ease; /* Add transition effect to opacity */
+        }
+
+        a:hover {
+            opacity: 0.7; /* Change the opacity on hover */
+        }
+        /* Rest of your existing CSS */
+        /* ... */
+    </style>
+</head>
+<body>
+
+    <a href="/send_mail" class="send-mail-btn">SEND MAILS</a>
+    
+   <table>
+    
+    <tr>
+        <th>Ladle Number</th>
+    </tr>
+    {%for x in ladleinfo %}
+    <tr>
+        <td><a href="/detail/?ladlename={{x.name}}">{{x.name}}</a></td>
+    </tr>
+    {%endfor%}
+    <tr>
+        <td><a href="/admin-login">+</a></td>
+    </tr>
+    {% comment %} <a href="/add_ladle">ADD LADLE</a> {% endcomment %}
+</table>
+<script>
+    const TIMEOUT_PERIOD = 1 * 60 * 1000; // 30 minutes
+    let sessionTimeoutId;
+
+    function startSessionTimeout() {
+        clearTimeout(sessionTimeoutId);
+        sessionTimeoutId = setTimeout(() => {
+            alert("Session Time Expired!");
+            window.location.href = '/logout'; // Django URL for logout
+        }, TIMEOUT_PERIOD);
+    }
+
+    function resetSessionTimeout() {
+        startSessionTimeout();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        startSessionTimeout();
+        document.addEventListener('mousemove', resetSessionTimeout);
+        document.addEventListener('keypress', resetSessionTimeout);
+    });
+</script>
+</body>
+</html>

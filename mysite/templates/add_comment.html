@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* Navigation */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+#Log{
+ padding-top: 11px;
+ padding-left: 3px;
+ 
+}
+/* -------------------- title ---------------- */
+.title{
+    font-weight: bold;
+    font-size: large;
+    margin-top: 6px;
+    margin-left: 6px;
+    
+}
+
+.navigation ul li a .title {           
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* curve outside */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* Main */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* ================== Ladle Details List ============== */
+
+
+.details {
+    margin-left: 10px;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+
+.details .ladlestatus {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 0;
+}
+
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .ladlestatus table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .ladlestatus table tr:last-child {
+  border-bottom: none;
+}
+.details .ladlestatus table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.details .recentOrders table tr th,
+.details .recentOrders table tr td
+{
+  padding:1px;
+  text-align: center;
+}
+/* Align first column of alerts table to center */
+.details .ladlestatus table tr td:first-child {
+    text-align: center;
+}
+.details .ladlestatus table tr td:last-child {
+  text-align: center;
+}
+.details .ladlestatus table tr td:nth-child(2) {
+  text-align: center;
+}
+.details .ladlestatus table tr td:nth-child(3) {
+  text-align: center;
+}
+.status.good {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.ok {
+  padding: 2px 4px;
+  background: rgb(218, 159, 49);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.danger {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ladlestatus {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.ladlestatus table tr td {
+  padding: 12px 10px;
+}
+.ladlestatus table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.ladlestatus table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+.ladlestatus table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.ladlestatus table tr:hover td h4 span {
+  color: var(--white);
+}
+/* Responsive Design */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+    </style>
+</head>
+
+<body>
+    <!--Navigation-->  
+    <div class="container">
+        
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            {% comment %} <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div> {% endcomment %}
+
+
+            <!-- ================ ALERTS ================= -->
+            
+  <div class="details">
+    <div class="ladlestatus">
+        <div class="cardHeader">
+            <h2>Overall Data</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Ladle Number</td>
+                    <td>Total Turns</td>
+                    <td>Total Moving Time</td>
+                    <td>Status</td>
+                    <td>Comment</td>
+                </tr>
+            </thead>
+            <tbody>
+                {%for x in data %}
+                <tr>
+                    <td>{{x.0}} </td>
+                    <td>{{x.1}}</td>
+                    <td>{{x.2}}</td>
+                    {% comment %} <td>{{x.3}}</td> {% endcomment %}
+                    {% if x.3 == 2 %}
+                    <td><span class="status good">good</span></td>
+                    {% endif %}
+                    {% if x.3 == 1 %}
+                    <td><span class="status ok">ok</span></td>
+                    {% endif %}
+                    {% if x.3 == 0 %}
+                    <td><span class="status danger">bad</span></td>
+                    {% endif %}
+                    <td>{{x.4}}</td>
+                </tr>
+                {%endfor%}
+                
+            </tbody>
+        </table>
+        <form method="post" id="comment" >
+          {% csrf_token %} 
+        <div class="filter">
+          <label for="dropdown">Select a ladle:</label>
+          <select id="dropdown" name="dropdown">
+              {%for x in ladles %}
+        
+              <option value={{x}}>{{x}}</option>
+           {%endfor%}
+             
+              <!-- Add more options as needed -->
+          </select> 
+          <br/>  
+          <label for="comment">Comment</label>
+          <input type="text" id="comment" name="comment" required>
+          <input type="submit" value="Submit">          
+        </div>
+      </form>
+      </div>
+       
+        
+        
+    <script>
+     
+// Menu Toggle
+let toggle = document.querySelector(".toggle");
+let navigation = document.querySelector(".navigation");
+let main = document.querySelector(".main");
+
+toggle.onclick = function () {
+  navigation.classList.toggle("active");
+  main.classList.toggle("active");
+};
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
