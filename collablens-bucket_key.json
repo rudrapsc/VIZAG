@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "collablens",
-  "private_key_id": "b8c3a1ce26ad0d12ddaf6a6bcc6b9e00129a55e3",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHdrH+yjKfJPla\nhCSwfL5+M9DB4hT3cYThh88y3Yp/3AE8t73JBwp6Arrn3iyBsWd0keXCvBMNvTDx\n6UPl8nbcbkdbHPHYnQkUG8aYpv6IBTP5+WI5cK8gRTu6wS0LjF0WLfk6QKHrZj6D\njSRErgUcwUaGptf52DyifgPrbjbSEIl+C4eCvcoUofZnIXevZMxpp/+v4qplMaD5\nW4nTBg35uOwhiS/vvlXbh3NVBkYyuXljB7DM9ANR0HSPcH0P6pFPjVwYzdIwyVRI\ni9ELRIP/6q0+q4cQJLiTS/Ifq0xPkrNnCMpec6gfjp0euMO8ajxF3IHVHWLaD/Ke\ni5XA6KCBAgMBAAECggEAPqwc4WHG5hpH/xjmLk4DzMObJFBVJiqVBggWInVZvzLx\ncJKLH08HC68v6wr0EQwc5ZOyDa3qjraTWm9g1i+JCVndMdO2acltwNO5Yt2VvEdm\nPXUOV94AKLOYQOXRsX85AG8RkCwetEg7/Dms26eSE6bm8ggadHZtFuFheef3cakR\nwfq3Yy5K/FcSZVm3tcS3GXWyH1RRrHwOuNa/3kxwo02qhKp2Fnj4td0ZULrK7Zpz\nFId26PUcDbu/3rLa5kNTxtPQd5DObMM6K67sPLkFMZuY//uthYBWllCzp7ey+tvD\n9As8hZmwbqNZfirJy8OwF+Va3Xdbk9HwZq74rvm8wQKBgQD66mCImuXsxausCV+w\nVW99vBqhvl5eNM7G8etzftKeFxGqHfqoSSTYNUpI56IvKgi87Dr0g9P6chkrV8ox\npCfK4GfSmHcFLQxBP0lSnJdtbznkvONOYM7Emzv6oy8+i01qbPptBOxtbO7IAuhd\n7QaQoyxFnR4KP6LNeA1Gf+cNWwKBgQDLgWlv6fXsSyg7sPNYKnZwtvDgw+LEuEV4\n5ibHfzY8K9/GqMp3ueffVGnuYgB9K6HPLKxel760TQVKFQFG7nfb/UZEVlpOiWMU\ncS2CdvcPRbDZqxkCw9mud0aLLGF3KIm5wyqaZ8XPx0OikOuMtydArPbQknmQjrit\n5Q8gIyOkUwKBgH+nSiF1nNBO6L4HrtUJQkWXs3ziWyRWfXSdk4oY1ZJ0bho8Uk/X\nlpUg14AryElyeyuSi5Pmlavu7HsumMGUoGIItQlhY/wQJRH03prW6/tTAQMsTgCM\nI+XGjEdBSkHpoSMp+mYIgThSmVDMmedfNV3UhiuMecIBChS6pRZe7+/NAoGAXIEA\nymxQ6w3mxetTUfpLSEUADUs9YypX+fK0Ie7DWmqfF5BWKEILEksus7s8ealBrgii\neYUEnLR9+QS/RdzUAt2H+Tw/ZH+y1/HyO+GTwA9vqiHKBqW750A0gsKzsxRsNlJu\npS0Sj7YGGnlBeP8wCogU0Q4jz//wFquOSo9ufh0CgYEAw+HQPpoowR1LBm5FAOKX\n46Vsx6flTl3kwTdweiP8ohezxPsFZGgkWclFClhVVsCFF8tRBlJT072T0p20c5Dq\nx07HSE/22QM44LvhL3F5hFWf/N8GctkA0jXxl6FPzeWmCEK4jGBCjhhqsy/1npHg\nrC4qd6yQUbxceczKD8OP1xI=\n-----END PRIVATE KEY-----\n",
-  "client_email": "itc-video-upload@collablens.iam.gserviceaccount.com",
-  "client_id": "107244405977691709116",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/itc-video-upload%40collablens.iam.gserviceaccount.com"
-}
+
